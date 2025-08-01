@@ -1,1 +1,540 @@
-# BranynHostStore
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BranynHost Store - VPS & Cloud Hosting Terpercaya</title>
+    <link rel="stylesheet" href="Style2.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+  <style>
+    /* ... (CSS dari jawaban sebelumnya tetap, tidak berubah) ... */
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f7fafc;
+      color: #232c3d;
+    }
+    /* ... seluruh CSS seperti sebelumnya ... */
+    /* (Salin seluruh CSS yang sudah kamu miliki di atas tanpa perubahan) */
+    header {
+      background: #fff;
+      box-shadow: 0 2px 8px #ececec;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 6vw;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      display: flex; align-items: center;
+    }
+    .menu-btn {
+      background: none;
+      border: none;
+      font-size: 2.2rem;
+      color: #232c3d;
+      cursor: pointer;
+      margin-left: 18px;
+      display: flex;
+      align-items: center;
+    }
+    .drawer {
+      position: fixed;
+      top: 0; left: -270px;
+      width: 270px;
+      height: 100vh;
+      background: #fff;
+      box-shadow: 2px 0 16px #ececec;
+      z-index: 1001;
+      transition: left 0.3s;
+      display: flex;
+      flex-direction: column;
+      padding-top: 0;
+    }
+    .drawer.open { left: 0; }
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 18px 14px 18px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .drawer-close {
+      background: none; border: none;
+      color: #fa7d09;
+      font-size: 2.3rem;
+      cursor: pointer;
+    }
+    .drawer ul {
+      padding: 0; margin: 0; margin-top: 12px;
+      list-style: none;
+      display: flex; flex-direction: column;
+      gap: 6px;
+    }
+    .drawer ul li a {
+      display: block;
+      padding: 18px 24px;
+      color: #232c3d;
+      font-size: 1.14rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: #f7fafc;
+      border-radius: 7px;
+      margin: 3px 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .drawer ul li a.active,
+    .drawer ul li a:hover {
+      color: #3d5af1;
+      background: #f0f4fe;
+    }
+    .drawer-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.19);
+      z-index: 1000;
+      display: none;
+    }
+    .hero {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      background: linear-gradient(100deg, #3d5af1 60%, #fa7d09 100%);
+      color: #fff;
+      padding: 60px 6vw 30px 6vw;
+    }
+    .hero-content {
+      max-width: 500px;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      margin-top: 0; margin-bottom: 12px;
+      font-weight: 700;
+      animation: fadeInUp 1.1s cubic-bezier(.4,0,.2,1);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 24px;
+      animation: fadeInUp 1.3s cubic-bezier(.4,0,.2,1);
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #fa7d09;
+      color: #fff;
+      padding: 12px 36px;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 2px 8px #fa7d0940;
+      transition: background 0.2s, transform 0.22s;
+      animation: scaleIn 1.15s cubic-bezier(.4,0,.2,1);
+    }
+    .cta-btn:hover { background: #232c3d; transform: scale(1.07);}
+    .wa-group-btn {
+      display: inline-block;
+      background: #25d366;
+      color: #fff;
+      padding: 12px 36px;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 2px 8px #25d36650;
+      margin-top: 16px;
+      margin-left: 0;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.22s;
+      animation: scaleIn 1.18s cubic-bezier(.4,0,.2,1);
+    }
+    .wa-group-btn:hover {
+      background: #128c7e;
+      color: #fff;
+      transform: scale(1.07);
+    }
+    .hero-img {
+      width: 280px; max-width: 90vw; margin-left: 32px;
+      animation: fadeInUp 1s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px);}
+      to   { opacity: 1; transform: translateY(0);}
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.92);}
+      to   { opacity: 1; transform: scale(1);}
+    }
+    /* ...lanjutan CSS dari jawaban sebelumnya... */
+    /* Semua CSS pada jawaban sebelumnya tetap di sini */
+    /* ... */
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://i.imghippo.com/files/nLrc5150zok.png" alt="logo" style="width:40px;height:40px;vertical-align:middle;margin-right:9px;">
+      <span style="color:#3d5af1;font-weight:700;font-size:1.35rem;">BRANYNHOST</span>
+      <span style="color:#aaa;font-weight:700;font-size:1.1rem;letter-spacing:2px;margin-left:2px;">STORE</span>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+  </header>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <nav class="drawer" id="drawer">
+    <div class="drawer-header">
+      <div class="logo">
+        <img src="https://i.imghippo.com/files/nLrc5150zok.png" alt="logo" style="width:32px;height:32px;vertical-align:middle;margin-right:1px;">
+        <span style="color:#3d5af1;font-weight:600;">BRANYNHOST</span>
+        <span style="color:#aaa;font-weight:600;letter-spacing:2px;">.S</span>
+      </div>
+      <button class="drawer-close" id="drawerClose" aria-label="Tutup Menu">&times;</button>
+    </div>
+    <ul>
+      <li><a href="#" class="active" onclick="closeDrawer()">Home</a></li>
+      <li><a href="#paket" onclick="closeDrawer()">Paket</a></li>
+      <li><a href="#testimoni" onclick="closeDrawer()">Testimoni</a></li>
+      <li><a href="#tentangvps" onclick="closeDrawer()">FAQ</a></li>
+    </ul>
+  </nav>
+  
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Solusi VPS & Cloud Hosting Modern</h1>
+      <p>Dapatkan server cepat, stabil, dan harga paling kompetitif untuk kebutuhan bisnis Anda.</p>
+      <a href="#paket" class="cta-btn">Lihat Paket</a>
+      <a href="https://chat.whatsapp.com/DkFNzLQ15m5J0Kohw4QnHD" class="wa-group-btn" target="_blank" rel="noopener">Gabung Grup WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- SECTION VPS PAKET -->
+  <section id="paket" class="paket-section">
+    <h2>Pilihan Paket BranynHost</h2>
+    <div class="tab-container">
+      <button class="tab-btn active" data-tab="low">VPS LOW</button>
+      <button class="tab-btn" data-tab="standar">VPS STANDAR</button>
+      <button class="tab-btn" data-tab="large">VPS LARGE</button>
+      <button class="tab-btn" data-tab="premium">VPS PREMIUM</button>
+    </div>
+    <!-- VPS LOW (2 paket)-->
+    <div class="paket-list-grid tab-content" id="low">
+      <div class="paket-card">
+        <div class="paket-title">LOW 1</div>
+        <div class="paket-spec">
+          <div class="paket-spec-item"><b>8GB RAM</b></div>
+          <div class="paket-spec-item">4 vCPU</div>
+          <div class="paket-spec-item">Active: 28-30 Day</div>
+          <div class="paket-spec-item">Garansi: 10 Day 2x Replace</div>
+          <div class="paket-spec-item">Support: Ubuntu, Debian, AlmaLinux, RockyLinux, CentOs, Windows</div>
+        </div>
+        <div class="paket-price"><span>IDR</span> <b class="paket-price-highlight">25.000</b></div>
+        <button class="order-btn-gradient">Pesan sekarang</button>
+      </div>
+      <div class="paket-card">
+        <div class="paket-title">LOW 2</div>
+        <div class="paket-spec">
+          <div class="paket-spec-item"><b>16GB RAM</b></div>
+          <div class="paket-spec-item">4 vCPU</div>
+          <div class="paket-spec-item">Active: 28-30 Day</div>
+          <div class="paket-spec-item">Garansi: 10 Day 2x Replace</div>
+          <div class="paket-spec-item">Support: Ubuntu, Debian, AlmaLinux, RockyLinux, CentOs, Windows</div>
+        </div>
+        <div class="paket-price"><span>IDR</span> <b class="paket-price-highlight">30.000</b></div>
+        <button class="order-btn-gradient">Pesan sekarang</button>
+      </div>
+    </div>
+    <!-- VPS STANDAR (3 paket)-->
+    <div class="paket-list-grid tab-content" id="standar" style="display:none;">
+      <div class="paket-card">
+        <div class="paket-title">STANDAR 1</div>
+        <div class="paket-spec">
+          <div class="paket-spec-item"><b>4GB RAM</b></div>
+          <div class="paket-spec-item">2 vCPU</div>
+          <div class="paket-spec-item">Active: 28-30 Day</div>
+          <div class="paket-spec-item">Garansi: 15 Day 2x Replace</div>
+          <div class="paket-spec-item">Support: Ubuntu, Debian, AlmaLinux, RockyLinux, CentOs, Windows</div>
+        </div>
+        <div class="paket-price"><span>IDR</span> <b class="paket-price-highlight">25.000</b></div>
+        <button class="order-btn-gradient">Pesan sekarang</button>
+      </div>
+      <div class="paket-card">
+        <div class="paket-title">STANDAR 2</div>
+        <div class="paket-spec">
+          <div class="paket-spec-item"><b>8GB RAM</b></div>
+          <div class="paket-spec-item">4 vCPU</div>
+          <div class="paket-spec-item">Active: 28-30 Day</div>
+          <div class="paket-spec-item">Garansi: 15 Day 2x Replace</div>
+          <div class="paket-spec-item">Support: Ubuntu, Debian, AlmaLinux, RockyLinux, CentOs, Windows</div>
+        </div>
+        <div class="paket-price"><span>IDR</span> <b class="paket-price-highlight">30.000</b></div>
+        <button class="order-btn-gradient">Pesan sekarang</button>
+      </div>
+      <div class="paket-card">
+        <div class="paket-title">STANDAR 3</div>
+        <div class="paket-spec">
+          <div class="paket-spec-item"><b>16GB RAM</b></div>
+          <div class="paket-spec-item">4 vCPU</div>
+          <div class="paket-spec-item">Active: 28-30 Day</div>
+          <div class="paket-spec-item">Garansi: 15 Day 2x Replace</div>
+          <div class="paket-spec-item">Support: Ubuntu, Debian, AlmaLinux, RockyLinux, CentOs, Windows</div>
+        </div>
+        <div class="paket-price"><span>IDR</span> <b class="paket-price-highlight">35.000</b></div>
+        <button class="order-btn-gradient">Pesan sekarang</button>
+      </div>
+    </div>
+    <!-- VPS LARGE (3 paket)-->
+    <div class="paket-list-grid tab-content" id="large" style="display:none;">
+      <div class="paket-card">
+        <div class="paket-title">LARGE 1</div>
+        <div class="paket-spec">
+          <div class="paket-spec-item"><b>4GB RAM</b></div>
+          <div class="paket-spec-item">2 vCPU</div>
+          <div class="paket-spec-item">Active: 28-30 Day</div>
+          <div class="paket-spec-item">Garansi: 20 Day 2x Replace</div>
+          <div class="paket-spec-item">Support: Ubuntu, Debian, AlmaLinux, RockyLinux, CentOs, Windows</div>
+        </div>
+        <div class="paket-price"><span>IDR</span> <b class="paket-price-highlight">35.000</b></div>
+        <button class="order-btn-gradient">Pesan sekarang</button>
+      </div>
+      <div class="paket-card">
+        <div class="paket-title">LARGE 2</div>
+        <div class="paket-spec">
+          <div class="paket-spec-item"><b>8GB RAM</b></div>
+          <div class="paket-spec-item">4 vCPU</div>
+          <div class="paket-spec-item">Active: 28-30 Day</div>
+          <div class="paket-spec-item">Garansi: 20 Day 2x Replace</div>
+          <div class="paket-spec-item">Support: Ubuntu, Debian, AlmaLinux, RockyLinux, CentOs, Windows</div>
+        </div>
+        <div class="paket-price"><span>IDR</span> <b class="paket-price-highlight">40.000</b></div>
+        <button class="order-btn-gradient">Pesan sekarang</button>
+      </div>
+      <div class="paket-card">
+        <div class="paket-title">LARGE 3</div>
+        <div class="paket-spec">
+          <div class="paket-spec-item"><b>16GB RAM</b></div>
+          <div class="paket-spec-item">4 vCPU</div>
+          <div class="paket-spec-item">Active: 28-30 Day</div>
+          <div class="paket-spec-item">Garansi: 20 Day 2x Replace</div>
+          <div class="paket-spec-item">Support: Ubuntu, Debian, AlmaLinux, RockyLinux, CentOs, Windows</div>
+        </div>
+        <div class="paket-price"><span>IDR</span> <b class="paket-price-highlight">45.000</b></div>
+        <button class="order-btn-gradient">Pesan sekarang</button>
+      </div>
+    </div>
+    <!-- VPS PREMIUM (3 paket)-->
+    <div class="paket-list-grid tab-content" id="premium" style="display:none;">
+      <div class="paket-card">
+        <div class="paket-title">PREMIUM 1</div>
+        <div class="paket-spec">
+          <div class="paket-spec-item"><b>4GB RAM</b></div>
+          <div class="paket-spec-item">2 vCPU</div>
+          <div class="paket-spec-item">Active: 28-30 Day</div>
+          <div class="paket-spec-item">Garansi: 28 Day 2x Replace</div>
+          <div class="paket-spec-item">Support: Ubuntu, Debian, AlmaLinux, RockyLinux, CentOs, Windows</div>
+        </div>
+        <div class="paket-price"><span>IDR</span> <b class="paket-price-highlight">50.000</b></div>
+        <button class="order-btn-gradient">Pesan sekarang</button>
+      </div>
+      <div class="paket-card">
+        <div class="paket-title">PREMIUM 2</div>
+        <div class="paket-spec">
+          <div class="paket-spec-item"><b>8GB RAM</b></div>
+          <div class="paket-spec-item">4 vCPU</div>
+          <div class="paket-spec-item">Active: 28-30 Day</div>
+          <div class="paket-spec-item">Garansi: 28 Day 2x Replace</div>
+          <div class="paket-spec-item">Support: Ubuntu, Debian, AlmaLinux, RockyLinux, CentOs, Windows</div>
+        </div>
+        <div class="paket-price"><span>IDR</span> <b class="paket-price-highlight">60.000</b></div>
+        <button class="order-btn-gradient">Pesan sekarang</button>
+      </div>
+      <div class="paket-card">
+        <div class="paket-title">PREMIUM 3</div>
+        <div class="paket-spec">
+          <div class="paket-spec-item"><b>16GB RAM</b></div>
+          <div class="paket-spec-item">4 vCPU</div>
+          <div class="paket-spec-item">Active: 28-30 Day</div>
+          <div class="paket-spec-item">Garansi: 28 Day 2x Replace</div>
+          <div class="paket-spec-item">Support: Ubuntu, Debian, AlmaLinux, RockyLinux, CentOs, Windows</div>
+        </div>
+        <div class="paket-price"><span>IDR</span> <b class="paket-price-highlight">70.000</b></div>
+        <button class="order-btn-gradient">Pesan sekarang</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- SECTION KEUNGGULAN -->
+  <section id="keunggulan" class="keunggulan-section">
+    <h2>Kenapa Pilih BranynHost Store?</h2>
+    <div class="keunggulan-list">
+      <div class="keunggulan-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Uptime">
+        <h4>99.99% Uptime</h4>
+        <p>Server selalu online untuk mendukung bisnis Anda tanpa gangguan.</p>
+      </div>
+      <div class="keunggulan-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/3523/3523819.png" alt="Support">
+        <h4>Support 24 Jam</h4>
+        <p>Tim kami siap membantu kapan saja melalui chat, tiket, atau email.</p>
+      </div>
+      <div class="keunggulan-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Panel">
+        <h4>Panel Modern</h4>
+        <p>Kelola server mudah dengan panel berbasis web yang intuitif.</p>
+      </div>
+      <div class="keunggulan-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/2659/2659360.png" alt="Lokasi">
+        <h4>Server Indonesia & Global</h4>
+        <p>Pilih lokasi server sesuai kebutuhan—latensi rendah dan koneksi stabil.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION PEMBAYARAN -->
+  <section id="pembayaran" class="pembayaran-section">
+    <h2>Metode Pembayaran</h2>
+    <ul class="pembayaran-list">
+      <li>
+        <img src="https://iconlogovector.com/uploads/images/2024/11/lg-673fa21a3ad2c-DANA.webp" alt="Dana">DANA
+      </li>
+      <li>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Logo_Gopay.svg" alt="GoPay">GoPay
+      </li>
+      <li>
+        <img src="https://iconlogovector.com/uploads/images/2024/03/lg-65ffda68a47ee-QRIS.webp" alt="QRIS">QRIS Semua Bank & E-Wallet
+      </li>
+    </ul>
+    <p style="margin-top:10px;">Setelah melakukan pemesanan, silakan konfirmasi pembayaran ke WhatsApp admin agar layanan segera diproses.</p>
+  </section>
+
+  <section class="testimoni-section" id="testimoni">
+    <h2>Testimoni Pelanggan</h2>
+    <div class="testimoni-list">
+      <div class="testimoni-card">
+        <div class="testi-user">⭐️⭐️⭐️⭐️⭐️</div>
+        <p>"Pelayanan cepat, server stabil. BranynHost Store pilihan terbaik untuk kebutuhan VPS bisnis saya!"</p>
+        <div class="testi-nama">- Rian, Jakarta</div>
+      </div>
+      <div class="testimoni-card">
+        <div class="testi-user">⭐️⭐️⭐️⭐️⭐️</div>
+        <p>"Harga terjangkau, support ramah, dan mudah diakses. Sangat recommended untuk pemula!"</p>
+        <div class="testi-nama">- Siti, Surabaya</div>
+      </div>
+      <div class="testimoni-card">
+        <div class="testi-user">⭐️⭐️⭐️⭐️</div>
+        <p>"Server cepat dan uptime bagus. Saya puas dengan BranynHost Store!"</p>
+        <div class="testi-nama">- Andre, Bandung</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vps-info" id="tentangvps">
+    <h2>Apa Itu VPS?</h2>
+    <p>
+      <b>VPS (Virtual Private Server)</b> adalah server virtual yang berjalan di dalam server fisik. Setiap VPS memiliki sumber daya sendiri (CPU, RAM, penyimpanan), sistem operasi terisolasi, dan kendali penuh seperti server fisik, namun dengan biaya jauh lebih terjangkau.
+    </p>
+    <div class="faq">
+      <details>
+        <summary>Apa kegunaan VPS?</summary>
+        <div>
+          VPS dapat digunakan untuk hosting website, aplikasi, server game, VPN, remote desktop, bot, pengembangan software, backup data, dan banyak lagi. Cocok untuk bisnis maupun personal yang butuh akses server dengan privasi dan performa tinggi.
+        </div>
+      </details>
+      <details>
+        <summary>Apa fungsi utama VPS?</summary>
+        <div>
+          Fungsi utama VPS adalah menyediakan server yang stabil, scalable, dan fleksibel untuk berbagai kebutuhan digital. Anda bisa instal apapun, mengelola sumber daya sendiri, bebas konfigurasi, dan mendapatkan akses root penuh.
+        </div>
+      </details>
+      <details>
+        <summary>Sistem operasi apa yang tersedia?</summary>
+        <div>
+          Tersedia berbagai OS seperti Ubuntu, Debian, AlmaLinux, RockyLinux, Windows Server, dsb. Anda bebas memilih OS sesuai kebutuhan.
+        </div>
+      </details>
+      <details>
+        <summary>Bisakah saya meningkatkan atau menurunkan paket VPS saya?</summary>
+        <div>
+          Bisa. Anda dapat upgrade/downgrade paket kapan saja sesuai kebutuhan melalui support kami.
+        </div>
+      </details>
+      <details>
+        <summary>Bagaimana cara menentukan spesifikasi VPS yang tepat?</summary>
+        <div>
+          Sesuaikan dengan kebutuhan aplikasi/web Anda. Jika ragu, konsultasikan dengan tim kami melalui WhatsApp.
+        </div>
+      </details>
+      <details>
+        <summary>Bagaimana cara memesan VPS?</summary>
+        <div>
+          Pilih paket, klik tombol "Pesan sekarang", Anda akan diarahkan ke WhatsApp admin untuk konfirmasi dan pembayaran.
+        </div>
+      </details>
+      <details>
+        <summary>Berapa lama waktu yang dibutuhkan untuk pengaturan VPS?</summary>
+        <div>
+          Setup VPS biasanya hanya butuh beberapa menit hingga 1 jam setelah pembayaran dikonfirmasi.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <footer id="kontak">
+    <div>© 2025 BranynHost Store • Email: support@branynhost.co.id • WhatsApp: 0819-1730-5991</div>
+  </footer>
+  <script>
+    // Tab Paket VPS
+    document.querySelectorAll('.tab-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(function(tc){ tc.style.display='none'; });
+        document.getElementById(btn.getAttribute('data-tab')).style.display='grid';
+        setTimeout(setOrderBtnListeners, 100);
+      });
+    });
+    // Drawer/Hamburger Menu
+    const menuBtn = document.getElementById('menuBtn');
+    const drawer = document.getElementById('drawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const drawerClose = document.getElementById('drawerClose');
+    if(menuBtn && drawer && drawerOverlay && drawerClose) {
+      menuBtn.onclick = function() {
+        drawer.classList.add('open');
+        drawerOverlay.style.display = 'block';
+      }
+      drawerClose.onclick = function() {
+        drawer.classList.remove('open');
+        drawerOverlay.style.display = 'none';
+      }
+      drawerOverlay.onclick = function() {
+        drawer.classList.remove('open');
+        drawerOverlay.style.display = 'none';
+      }
+      window.closeDrawer = function() {
+        drawer.classList.remove('open');
+        drawerOverlay.style.display = 'none';
+      }
+    }
+
+    // Tombol Pesan Sekarang (WhatsApp)
+    const nomorWA = "6281917305991"; // Ganti dengan nomor admin
+    function setOrderBtnListeners() {
+      document.querySelectorAll('.order-btn-gradient').forEach(function(btn){
+        btn.onclick = function(){
+          const card = btn.closest('.paket-card');
+          if (!card) return;
+          const title = card.querySelector('.paket-title')?.innerText || '';
+          const specItems = card.querySelectorAll('.paket-spec-item');
+          let specs = '';
+          specItems.forEach(function(el){
+            specs += el.innerText + "%0A";
+          });
+          const harga = card.querySelector('.paket-price-highlight')?.innerText || '';
+          const pesan = `Halo admin BranynHost Store,%0ASaya ingin order paket:%0A` +
+            `Paket: ${title}%0A` +
+            `Spesifikasi:%0A${specs}` +
+            `Harga: IDR ${harga}%0AMohon info detail pembayaran dan aktivasi.`;
+          window.open(`https://wa.me/${nomorWA}?text=${pesan}`, "_blank");
+        }
+      });
+    }
+    setOrderBtnListeners();
+  </script>
+</body>
+</html>
